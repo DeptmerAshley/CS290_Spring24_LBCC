@@ -1,0 +1,273 @@
+/* styles.css */
+
+/* Basic Styles */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header, footer {
+    background-color: #111;
+    text-align: center;
+    padding: 1em 0;
+}
+
+header h1, footer p {
+    margin: 0;
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+/* Section Styles */
+section {
+    padding: 2em;
+    text-align: center;
+}
+
+section#overview, section#features, section#media {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Button Styles */
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Responsive Layouts */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
+/* Position and Z-Index */
+header, footer {
+    position: relative;
+    z-index: 10;
+}
+
+/* Fixed-Width and Fluid Layout */
+#features, #media {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* clearfix */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Box-Sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Background Image */
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+/* Navigation List (Vertical and Horizontal) */
+nav.vertical ul {
+    display: block;
+}
+
+nav.vertical ul li {
+    margin: 10px 0;
+}
+
+/* Drop Down Menu */
+nav ul li:hover > ul {
+    display: block;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    background-color: #111;
+}
+
+nav ul ul li {
+    width: 200px;
+}
+
+/* Sitemap */
+footer nav {
+    margin-top: 1em;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+footer nav ul li {
+    margin: 0 15px;
+}
+
+/* Search Box */
+#searchBox {
+    position: relative;
+    margin: 1em auto;
+    text-align: center;
+}
+
+#searchBox input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    max-width: 300px;
+}
+
+#searchBox input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    padding: 1em;
+    background-color: #111;
+}
+
+.breadcrumbs ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.breadcrumbs ul li {
+    margin: 0 10px;
+}
+
+.breadcrumbs ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Vendor Prefix Properties */
+.example {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#healthCheck {
+    text-align: center;
+    margin: 2em 0;
+}
+
+#healthCheck input, #healthCheck button {
+    padding: 10px;
+    margin: 10px;
+}
+
+#healthOutput {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+h1, h2, h3, h4 {
+    color: #c50505;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-size: 32px;
+}
+button.learn-more {
+    background-color: #c50505;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 90%;
+}
+button.learn-more:hover {
+    background-color: #555;
+}
+.hidden-content {
+    display: none;
+}
+.comment-box {
+    margin-top: 20px;
+}
+.comment-box textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+}
+.comment-box button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.comment-box button:hover {
+    background-color: #555;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+p {
+    width: 90%;
+    padding-left: 10%;
+    text-shadow: 4px 2px 2px rgba(0, 0, 0, 1);
+}

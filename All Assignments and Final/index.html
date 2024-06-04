@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloodborne - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bloodborne</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#overview">Overview</a></li>
+                <li><a href="areas.html">Areas</a></li>
+                <li><a href="blogs.html">Blogs/Chats</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>Overview</li>
+        </ul>
+    </div>
+
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>Bloodborne is an action role-playing game developed by FromSoftware and published by Sony Computer Entertainment. Released in 2015, the game is set in the gothic, Victorian-era inspired city of Yharnam, where players take on the role of a Hunter tasked with uncovering the city's dark secrets.</p>
+    </section>
+
+    <section id="features">
+        <h2>Key Features</h2>
+        <ul>
+            <li>Fast-paced, challenging combat</li>
+            <li>Deep lore and intricate storytelling</li>
+            <li>Gothic, atmospheric world design</li>
+            <li>Extensive exploration and discovery</li>
+        </ul>
+        <button id="moreFeaturesBtn">Show More Features</button>
+        <ul id="moreFeatures" style="display: none;">
+            <li>Unique Insight mechanic</li>
+            <li>Procedurally generated Chalice Dungeons</li>
+            <li>Customization of Hunter's appearance and abilities</li>
+        </ul>
+    </section>
+
+    <section id="media">
+        <h2>Media</h2>
+        <img src="bloodborne.jpg" alt="Bloodborne Screenshot">
+    </section>
+
+    <section id="healthCheck">
+        <h2>Check Your Health Status</h2>
+        <input type="number" id="healthInput" placeholder="Enter your health value">
+        <button id="healthCheckBtn">Check Status</button>
+        <p id="healthOutput"></p>
+    </section>
+
+    <section id="searchBox">
+        <input type="text" placeholder="Search...">
+        <input type="submit" value="Go">
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Bloodborne Fan Site</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="areas.html">Areas</a></li>
+                <li><a href="blogs.html">Blogs/Chats</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        // Function to toggle more features
+        document.getElementById('moreFeaturesBtn').addEventListener('click', function() {
+            const moreFeatures = document.getElementById('moreFeatures');
+            if (moreFeatures.style.display === 'none') {
+                moreFeatures.style.display = 'block';
+            } else {
+                moreFeatures.style.display = 'none';
+            }
+        });
+
+        // Example: Variables of different data types
+        const numberVar = 10;
+        const stringVar = 'Bloodborne';
+        const booleanVar = true;
+        const arrayVar = ['Central Yharnam', 'Cathedral Ward', 'Old Yharnam'];
+        const objectVar = {
+            name: 'Hunter',
+            weapon: 'Saw Cleaver',
+            health: 100
+        };
+
+        // Function to demonstrate scope
+        function demoScope() {
+            let localVar = 'This is a local variable';
+            console.log(localVar); // Accessible within the function
+        }
+        demoScope();
+        // console.log(localVar); // Uncaught ReferenceError: localVar is not defined
+
+        // Example: Conditionals
+        function checkHealth(health) {
+            if (health > 50) {
+                return 'Healthy';
+            } else if (health > 0) {
+                return 'Injured';
+            } else {
+                return 'Dead';
+            }
+        }
+
+        // Example: Loops
+        arrayVar.forEach(function(area) {
+            console.log(area);
+        });
+
+        // Event Listener for Health Check Button
+        document.getElementById('healthCheckBtn').addEventListener('click', function() {
+            const healthInput = document.getElementById('healthInput').value;
+            if (healthInput === "") {
+                document.getElementById('healthOutput').innerText = 'Please enter a health value';
+                return;
+            }
+            const healthStatus = checkHealth(parseInt(healthInput));
+            document.getElementById('healthOutput').innerText = 'Health Status: ' + healthStatus;
+        });
+
+        // Common Errors: Example of avoiding an undefined variable error
+        try {
+            console.log(nonExistentVar);
+        } catch (error) {
+            console.log('Caught an error: ' + error.message);
+        }
+    </script>
+</body>
+</html>
