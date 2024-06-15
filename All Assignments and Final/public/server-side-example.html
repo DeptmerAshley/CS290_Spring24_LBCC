@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloodborne - Server-Side Scripting Example</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bloodborne - Server-Side Scripting Example</h1>
+        <nav>
+            <ul class="horizontal-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="central-yharnam.html">Central Yharnam</a></li>
+                <li><a href="cathedral-ward.html">Cathedral Ward</a></li>
+                <li><a href="old-yharnam.html">Old Yharnam</a></li>
+                <li><a href="hemwick-charnel-lane.html">Hemwick Charnel Lane</a></li>
+                <li><a href="forbidden-woods.html">Forbidden Woods</a></li>
+                <li><a href="castle-cainhurst.html">Castle Cainhurst</a></li>
+                <li><a href="upper-cathedral-ward.html">Upper Cathedral Ward</a></li>
+                <li><a href="nightmare-of-mensis.html">Nightmare of Mensis</a></li>
+                <li><a href="nightmare-frontier.html">Nightmare Frontier</a></li>
+                <li><a href="server-side-example.html">Server-Side Example</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Server-Side Scripting Example</h2>
+        
+        <form id="writeForm">
+            <label for="message">Message:</label>
+            <input type="text" id="message" name="message" required>
+            <button type="submit">Write to File</button>
+        </form>
+
+        <form id="readForm">
+            <button type="submit">Read from File</button>
+        </form>
+
+        <p id="output"></p>
+    </section>
+
+    <script>
+        document.getElementById('writeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const message = document.getElementById('message').value;
+            fetch('/write', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('output').textContent = data;
+            });
+        });
+
+        document.getElementById('readForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/read')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('output').textContent = data;
+            });
+        });
+    </script>
+</body>
+</html>
