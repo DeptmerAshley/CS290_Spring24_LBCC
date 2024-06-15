@@ -1,0 +1,1 @@
+Majority of requirements for most assignments are completed. 1-4 are basically met with full requirements. Still working on Assign 5 and final project. Looking toi make one cohesive project. Server side will be kept on one page. Having trouble setting the node for server side.
