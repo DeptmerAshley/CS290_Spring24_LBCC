@@ -1,1 +1,3 @@
 Majority of requirements for most assignments are completed. 1-4 are basically met with full requirements. Still working on Assign 5 and final project. Looking toi make one cohesive project. Server side will be kept on one page. Having trouble setting the node for server side.
+
+Webpage now contains all elements needed for final project and assignments. I am having a hard time using my page on a local server. I downloaded the correct compiler/code to port it out but my computer is not liking it for some reason. THere is code there for implementation but not executing. 
