@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloodborne - Server-Side Scripting Example</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXlqwmZqap15dJEKC3gLH9eg42TgJ5sW0&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            var location = { lat: 44.5618, lng: -123.2823 }; // Example: OSU coordinates
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -39,34 +53,106 @@
             <button type="submit">Read from File</button>
         </form>
 
+        <button id="listMessages">List Messages</button>
+        <ul id="messageList"></ul>
+
+        <form id="deleteForm">
+            <label for="messageIndex">Message Index to Delete:</label>
+            <input type="number" id="messageIndex" name="messageIndex" required>
+            <button type="submit">Delete Message</button>
+        </form>
+
         <p id="output"></p>
+
+        <div id="map" style="height: 500px; width: 100%;"></div>
+
+        <script>
+            document.getElementById('writeForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const messageInput = document.getElementById('message');
+                const message = messageInput.value.trim();
+                const output = document.getElementById('output');
+
+                if (message.length === 0) {
+                    output.textContent = 'Message cannot be empty.';
+                    return;
+                }
+
+                fetch('/write', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    output.textContent = data;
+                    messageInput.value = '';
+                })
+                .catch(error => {
+                    output.textContent = 'Error: ' + error;
+                });
+            });
+
+            document.getElementById('readForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const output = document.getElementById('output');
+                
+                fetch('/read')
+                .then(response => response.text())
+                .then(data => {
+                    output.textContent = data;
+                })
+                .catch(error => {
+                    output.textContent = 'Error: ' + error;
+                });
+            });
+
+            document.getElementById('listMessages').addEventListener('click', function() {
+                const messageList = document.getElementById('messageList');
+                messageList.innerHTML = '';
+
+                fetch('/messages')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach((message, index) => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${index}: ${message}`;
+                        messageList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+
+            document.getElementById('deleteForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const messageIndex = document.getElementById('messageIndex').value;
+                const output = document.getElementById('output');
+
+                fetch('/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ index: parseInt(messageIndex) })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    output.textContent = data;
+                    document.getElementById('messageIndex').value = '';
+                })
+                .catch(error => {
+                    output.textContent = 'Error: ' + error;
+                });
+            });
+        </script>
     </section>
 
-    <script>
-        document.getElementById('writeForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const message = document.getElementById('message').value;
-            fetch('/write', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: message })
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('output').textContent = data;
-            });
-        });
-
-        document.getElementById('readForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            fetch('/read')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('output').textContent = data;
-            });
-        });
-    </script>
+    <footer>
+        <p>&copy; 2024 Bloodborne Fan Site</p>
+    </footer>
 </body>
 </html>
